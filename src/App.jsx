@@ -1,71 +1,63 @@
 import React, { Component } from "react";
 import Form from "./components/Form/Form";
-import ContactList from "./components/ContactList/ContactList";
-import { nanoid } from "nanoid";
-import SearchFilterInput from "./components/SearchFilterInput/SearchFilterInput";
+import PadList from "./components/PadList/PadList";
 
 class App extends Component {
   state = {
-    contacts: [],
-    filter: "",
-  };
-  formSubmitHandler = (data) => {
-    const state = this.state.contacts
-      .map((contact) => {
-        return contact.name.toLowerCase() === data.name.toLowerCase();
-      })
-      .includes(true);
-    if (state) {
-      alert("такой контакт уже есть");
-    } else {
-      data.id = nanoid(5);
-      this.setState({ contacts: [...this.state.contacts, data] });
-    }
-  };
-  onDelForId = (curentId) => {
-    const list = this.state.contacts.filter(({ id }) => id !== curentId);
-    this.setState({ contacts: list });
-  };
-
-  filterInputHandler = (input) => {
-    let inputLC = input.toLowerCase();
-    this.setState({ filter: inputLC });
-  };
-  onFilter = () => {
-    const { filter, contacts } = this.state;
-    if (filter) {
-      return contacts.filter(({ name }) => name.toLowerCase().includes(filter));
-    } else {
-      return contacts;
-    }
-  };
-  componentDidMount() {
-    const contacts = localStorage.getItem("contacts");
-
-    const parsedContacts = JSON.parse(contacts);
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
+    currentWord: ''
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    }
-  }
+  formSubmitHandler = (word) => {
+    this.setState({ currentWord: word });
+    console.log(this.state)
+    };
+  imPad = (word) => {
+    word;
+  };
+  // rodPad = () =>  {
+  //   this.setState({wordList: [...this.state.wordList, this.state.currentWord]});
+  // };
+  // datPad = () =>  {
+  //   this.setState({wordList: [...this.state.wordList, this.state.currentWord]});
+  // };
+  // inPad = ()  => {
+  //   this.setState({wordList: [...this.state.wordList, this.state.currentWord]});
+  // };
+  // tvorPad = () =>  {
+  //   this.setState({wordList: [...this.state.wordList, this.state.currentWord]});
+  // };
+  // datelPad = () =>  {
+  //   this.setState({wordList: [...this.state.wordList, this.state.currentWord]});
+  // };
+ 
+   // componentDidMount() {
+  //   const contacts = localStorage.getItem("contacts");
+
+  //   const parsedContacts = JSON.parse(contacts);
+  //   if (parsedContacts) {
+  //     this.setState({ contacts: parsedContacts });
+  //   }
+  // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.contacts !== prevState.contacts) {
+  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  //   }
+  // }
 
   render() {
-    const { filter } = this.state;
-    const filtredContacts = this.onFilter();
-
+    // const { filter } = this.state;
+    // const filtredContacts = this.onFilter();
+const list = [];
     return (
       <>
         <Form onSubmit={this.formSubmitHandler} />
-        <SearchFilterInput onChange={this.filterInputHandler} />
-        <ContactList
-          contacts={filtredContacts}
-          filter={filter}
-          changeId={this.onDelForId}
+        {/* <SearchFilterInput onChange={this.filterInputHandler} /> */}
+        {list.length>0 &&
+        <PadList
+          list ={list}
+      
         />
+        }
+        
       </>
     );
   }
