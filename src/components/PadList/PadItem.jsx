@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { Item, Name, Number} from "./PadList.styled";
 import React from "react";
 
-const PadItem = ({ padezh, string}) => {
+const PadItem = ({word}) => {
   return (
     <Item>
       <Name>
-        {padezh}: <Number>{string}</Number>
+        {word.padezh}: <Number>{word.word}</Number>
       </Name>
      
     </Item>
@@ -14,6 +14,5 @@ const PadItem = ({ padezh, string}) => {
 };
 export default PadItem;
 PadItem.propTypes = {
-  padezh: PropTypes.string.isRequired,
-  string: PropTypes.string.isRequired
+  word: PropTypes.object.isRequired
 };

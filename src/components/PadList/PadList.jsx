@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import PadItem from "./PadItem";
 import { Titel, List } from "./PadList.styled";
-const PadList = ({ list }) => (
+const PadList = ({ words }) => (
   <>
     <Titel> Перечень падежей </Titel>
     <List>
-      {list.map(({ padezh, string }) => (
+      {words.map((word) => (
         <PadItem
-          key={padezh}
-          item = {{padezh, string}}
+          key={word.padezh}
+          word = {word}
   />
       ))}
     </List>
@@ -17,6 +17,6 @@ const PadList = ({ list }) => (
 );
 export default PadList;
 PadList.propTypes = {
- list: PropTypes.array,
+ words: PropTypes.array,
 
 };
