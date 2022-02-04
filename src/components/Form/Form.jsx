@@ -9,7 +9,6 @@ export default class Form extends React.Component {
   };
   state = {
     word: "",
-    
   };
   handleChange = (event) => {
     const { value } = event.currentTarget;
@@ -17,7 +16,7 @@ export default class Form extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.word);
   };
     render() {
     return (
@@ -25,7 +24,7 @@ export default class Form extends React.Component {
         <Titel>Напишите слово</Titel>
         <AddForm onSubmit={this.handleSubmit}>
           <AddFormLabel>
-            Сужествительное в иминительном падеже
+            Существительное в иминительном падеже
             <AddFormInput
               type="text"
               name="name"
